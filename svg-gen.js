@@ -4,10 +4,10 @@ const mk=(x,y,c)=>`<path d="M${x-7} ${y}h14M${x} ${y-7}v14" stroke="${c}" stroke
 const frame=(W,H,t)=>`<rect width="${W}" height="${H}" fill="${t.bg}"/><rect x="20.5" y="16.5" width="${W-41}" height="${H-33}" fill="none" stroke="${t.ln}"/>${mk(20.5,16.5,t.mk)}${mk(W-20.5,16.5,t.mk)}${mk(20.5,H-16.5,t.mk)}${mk(W-20.5,H-16.5,t.mk)}`;
 const THEMES={
  light:{bg:"#f2f2f3",e:"#e7e7ea",ln:"#d4d4d7",mk:"#7a7a7d",tx:"#1d1f20",mu:"#5d5d60",pal:["#5980a6","#d9694f","#d9a23a","#4f9e7a","#8a6fc4","#c9608f"]},
- dark:{bg:"#161b22",e:"#21262d",ln:"#30363d",mk:"#8b949e",tx:"#f0f6fc",mu:"#c9d1d9",pal:["#94bce3","#f08d74","#f2c463","#6fcf9f","#b39cf0","#ec8ab4"]}
+ dark:{bg:"#161b22",e:"#21262d",ln:"#3d444d",mk:"#9198a1",tx:"#ffffff",mu:"#e6edf3",pal:["#94bce3","#f08d74","#f2c463","#6fcf9f","#b39cf0","#ec8ab4"]}
 };
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-const cond="font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.01em";
+const cond="font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:.015em";
 const FONT=(typeof module!=="undefined"&&module.exports)?require("./font-data.js"):null;
 const ff=()=>{const d=FONT||root.MJFONT;return d?`@font-face{font-family:'Nunito';src:url(data:font/woff2;base64,${d}) format('woff2');font-weight:500 800}`:"";};
 const G={M:["10001","11011","10101","10101","10001","10001","10001"],U:["10001","10001","10001","10001","10001","10001","01110"],D:["11110","10001","10001","10001","10001","10001","11110"],I:["11111","00100","00100","00100","00100","00100","11111"],T:["11111","00100","00100","00100","00100","00100","00100"],J:["00111","00010","00010","00010","00010","10010","01100"],A:["01110","10001","10001","11111","10001","10001","10001"],N:["10001","11001","10101","10011","10001","10001","10001"]};
@@ -72,7 +72,7 @@ function projects(t){
   <text class="t" x="${W-295}" y="${y+31}" font-size="14" fill="${t.tx}">${r[2]}</text>
  </g>`}).join("");
  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Projects">
-<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:500}
+<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}
 .row{opacity:0;animation:in .6s ease forwards}@keyframes in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
 .pulse{transform-box:fill-box;transform-origin:center;animation:p 2.4s ease-in-out infinite}@keyframes p{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}</style>
 ${frame(W,H,t)}
@@ -145,7 +145,7 @@ function roadrunner(t){
  const stats=[["0","Double-bookings","100 goroutines on one seat, -race on",3],["3.5×","Faster date-range query","9.75s → 2.75s via partitioning",1],["5.7M","Seats · ~20M booking events","covering index: −47% rows scanned",2],["Exactly-once","Event processing","outbox + idempotent Kafka consumers",4]];
  const st=stats.map((r,i)=>{const y=108+i*72;return `<g class="pop" style="animation-delay:${(1+i*0.2).toFixed(1)}s"><text class="t" x="810" y="${y+30}" font-size="34" fill="${p[r[3]]}" style="letter-spacing:.02em">${r[0]}</text><text class="t" x="810" y="${y+50}" font-size="13" fill="${t.tx}">${r[1]}</text><text class="b" x="810" y="${y+66}" font-size="13" fill="${t.mu}">${esc(r[2])}</text></g>`}).join("");
  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="RoadRunner Transport architecture">
-<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:500}
+<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}
 .flow{animation:fl 1.2s linear infinite}@keyframes fl{to{stroke-dashoffset:-16}}
 .pk{animation:pk 4.5s linear infinite;opacity:0}@keyframes pk{0%{transform:translateX(0);opacity:0}5%{opacity:1}95%{opacity:1}100%{transform:translateX(678px);opacity:0}}
 .pop{opacity:0;animation:pp .5s ease forwards}@keyframes pp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}</style>
@@ -177,7 +177,7 @@ function experience(t){
   <text class="b" x="${tx}" y="${y+50}" font-size="13" fill="${t.mu}" text-anchor="${anchor}">${r[4]}</text>`;});
  let ticks="";for(let y=2020;y<=2026;y++)ticks+=`<line x1="${X(y)}" y1="226" x2="${X(y)}" y2="234" stroke="${t.mk}"/><text class="t" x="${X(y)}" y="250" font-size="12" fill="${t.mu}" text-anchor="middle">${y}</text>`;
  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Experience and education timeline">
-<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:500}
+<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}
 .grow{transform-box:fill-box;transform-origin:left;animation:g 1s cubic-bezier(.2,.8,.2,1) both}@keyframes g{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .now{transform-box:fill-box;transform-origin:center;animation:n 2s ease-in-out infinite}@keyframes n{50%{transform:scale(1.8);opacity:.35}}</style>
 ${frame(W,H,t)}
@@ -209,7 +209,7 @@ function research(t){
   <text class="t" x="${x+30}" y="${y+78}" font-size="14" fill="${t.tx}">${r[1]}</text>
   <text class="b" x="${x+30}" y="${y+98}" font-size="14" fill="${t.mu}">${esc(r[2])}</text></g>`}).join("");
  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Research and wins">
-<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:500}
+<style>${ff()}.t{${cond}}.b{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}
 .pop{opacity:0;animation:pp .5s ease forwards}@keyframes pp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .bar{transform-box:fill-box;transform-origin:left;animation:br 3.5s ease-in-out infinite}@keyframes br{0%{transform:scaleX(0)}40%,70%{transform:scaleX(1)}100%{transform:scaleX(0);transform-origin:right}}</style>
 ${frame(W,H,t)}
@@ -218,7 +218,72 @@ ${frame(W,H,t)}
 <text class="t" x="${W-60}" y="52" font-size="14" text-anchor="end"><tspan fill="${p[0]}">2 papers</tspan><tspan fill="${t.mu}"> · </tspan><tspan fill="${p[1]}">1 chair</tspan><tspan fill="${t.mu}"> · </tspan><tspan fill="${p[2]}">3 podiums</tspan></text>
 ${body}</svg>`;}
 
-const GEN={header,terminal,roadrunner,projects,experience,research,"now-playing":nowPlaying,divider};
+function scope(svg,p){
+ const kf=new Set();svg.replace(/@keyframes ([\w-]+)/g,(m,n)=>kf.add(n));
+ svg=svg.replace(ff(),"");
+ svg=svg.replace(/<style>([\s\S]*?)<\/style>/,(m,css)=>{
+  css=css.replace(/\.([a-zA-Z][\w-]*)/g,"."+p+"$1").replace(/@keyframes ([\w-]+)/g,"@keyframes "+p+"$1")
+   .replace(/animation:([^;}]+)/g,(m2,v)=>"animation:"+v.replace(/[a-zA-Z][\w-]*/g,w=>kf.has(w)?p+w:w));
+  return "<style>"+css+"</style>";});
+ svg=svg.replace(/class="([^"]+)"/g,(m,c)=>'class="'+c.split(/\s+/).map(x=>p+x).join(" ")+'"');
+ const h=+svg.match(/height="(\d+(?:\.\d+)?)"/)[1];
+ const inner=svg.slice(svg.indexOf(">")+1,svg.lastIndexOf("</svg>"));
+ return {h,inner};
+}
+function wrap(s,max){const out=[];let line="";for(const w of s.split(" ")){if((line+" "+w).trim().length>max){out.push(line.trim());line=w;}else line+=" "+w;}if(line.trim())out.push(line.trim());return out;}
+function profile(t){
+ const W=1200,p=t.pal;let y=0,body="",n=0;
+ const add=(svg,gap)=>{const s=scope(svg,"s"+(n++)+"-");body+=`<g transform="translate(0,${y})">${s.inner}</g>`;y+=s.h+(gap??12);};
+ const heading=(num,title)=>{y+=26;body+=`<rect x="40" y="${y}" width="40" height="28" fill="${t.e}"/><text class="pt" x="60" y="${y+20}" font-size="15" fill="${t.mu}" text-anchor="middle">${num}</text><text class="pt" x="96" y="${y+21}" font-size="23" fill="${t.tx}">${esc(title)}</text>`;y+=46;};
+ const bullets=(items)=>{y+=4;items.forEach(([lead,rest,ci])=>{const lines=wrap(lead+" "+rest,118);const col=p[ci];
+  body+=`<rect x="44" y="${y+8}" width="7" height="7" fill="${col}"/>`;
+  lines.forEach((ln,i)=>{let txt=esc(ln);if(i===0&&ln.startsWith(lead))txt=`<tspan fill="${col}" font-weight="800">${esc(lead)}</tspan>${esc(ln.slice(lead.length))}`;
+   body+=`<text class="pb" x="64" y="${y+17+i*25}" font-size="16" fill="${t.mu}">${txt}</text>`;});
+  y+=lines.length*25+10;});y+=6;};
+ add(header(t),8);
+ const phrases=["AI & Backend Engineer · Go · Java · Python","Multi-agent RAG systems with LangGraph","Distributed microservices on gRPC + Kafka","Ex-NXP · M.Tech Software Engineering @ DTU"],PT=phrases.length*3.2;
+ phrases.forEach((ph,i)=>{const a=(i*3.2/PT*100),b=((i*3.2+0.4)/PT*100),c=((i*3.2+2.8)/PT*100),d=((i*3.2+3.2)/PT*100);
+  body+=`<style>.ph${i}{opacity:0;animation:phk${i} ${PT}s linear infinite}@keyframes phk${i}{0%,${a.toFixed(2)}%{opacity:0;transform:translateY(8px)}${b.toFixed(2)}%,${c.toFixed(2)}%{opacity:1;transform:none}${d.toFixed(2)}%,100%{opacity:0;transform:translateY(-8px)}}</style><text class="pt ph${i}" x="${W/2}" y="${y+34}" font-size="28" fill="${p[(i+1)%6]}" text-anchor="middle"${i?' opacity="0"':""}>${esc(ph)}</text>`;});
+ y+=56;
+ body+=`<text class="pb" x="${W/2}" y="${y+20}" font-size="18" font-weight="800" fill="${t.tx}" text-anchor="middle">I build agentic AI systems and distributed backends, and I've shipped secure BootROM firmware at NXP.</text>`;y+=44;
+ add(terminal(t),8);
+ heading("01","Flagship: RoadRunner Transport");
+ add(roadrunner(t),6);
+ bullets([["8 Go microservices","over gRPC behind a REST API gateway. MySQL for transactional inventory, MongoDB for schema-variant catalog data.",3],
+  ["One saga, three concurrency models:","pessimistic row locks, quota-based waitlists and external-provider holds, with automatic compensation (refund → release → cancel).",4],
+  ["Zero double-bookings","with 100 goroutines contending for one seat under -race.",1],
+  ["MySQL at scale","(~5.7M seats, ~20M events): covering index cut scanned rows ~47%; monthly partitioning took a date-range query from 9.75s → 2.75s.",2],
+  ["Exactly-once","via transactional outbox + idempotent Kafka consumers; Prometheus, OpenTelemetry and per-provider circuit breakers.",0]]);
+ heading("02","More projects");
+ add(projects(t));
+ heading("03","Experience");
+ add(experience(t),6);
+ bullets([["NXP Semiconductors","· Embedded Software Engineer Intern. BootROM firmware for secure SoCs in C and Assembly; a one-click Python GUI wired into Jenkins CI/CD saved 7 days of manual effort and raised testing efficiency 30%.",1],
+  ["National Informatics Centre","· Intern. A unified multi-model AI cybersecurity platform (−35% scan latency); a LoRA/QLoRA fine-tuned SLM with 30% higher accuracy at 60% lower training cost, served at <200ms.",2]]);
+ heading("04","Stack");
+ const stack=[["Languages",["Java","C++","C#","Go","Python","JavaScript"]],["AI / ML",["PyTorch","TensorFlow","scikit-learn","LangGraph","RAG","HuggingFace","Claude API"]],["Backend",["Spring Boot","Node.js","Express","FastAPI","Kafka"]],["Cloud & infra",["AWS","Docker","Kubernetes","Jenkins","GitHub Actions"]],["Data",["MySQL","PostgreSQL","MongoDB","Redis","FAISS","ChromaDB"]]];
+ const sy0=y;let sb="";let ci=0;
+ stack.forEach(([lab,items],ri)=>{let x=230,ry=y+22;sb+=`<text class="pt" x="60" y="${ry+20}" font-size="15" fill="${t.tx}">${esc(lab)}</text>`;
+  items.forEach(it=>{const w=Math.round(it.length*8.6+26);if(x+w>W-60){x=230;ry+=40;}const col=p[ci++%6];
+   sb+=`<rect x="${x+.5}" y="${ry+.5}" width="${w}" height="30" fill="none" stroke="${col}"/><text class="pb" x="${x+w/2}" y="${ry+20}" font-size="14" font-weight="700" fill="${col}" text-anchor="middle">${esc(it)}</text>`;x+=w+10;});
+  y=ry+40;if(ri<stack.length-1)sb+=`<line x1="40" y1="${y+6}" x2="${W-40}" y2="${y+6}" stroke="${t.ln}"/>`;y+=12;});
+ y+=14;body+=`<rect x="20.5" y="${sy0+.5}" width="${W-41}" height="${y-sy0}" fill="none" stroke="${t.ln}"/>${mk(20.5,sy0+.5,t.mk)}${mk(W-20.5,sy0+.5,t.mk)}${mk(20.5,y+.5,t.mk)}${mk(W-20.5,y+.5,t.mk)}${sb}`;y+=12;
+ heading("05","Research & wins");
+ add(research(t));
+ add(nowPlaying(t),6);
+ heading("06","More about me");
+ bullets([["M.Tech Software Engineering","at DTU (CGPA 8.85); B.Tech CSE at Gautam Buddha University (CGPA 8.46).",4],
+  ["Teaching Assistant","during my Masters; led the TechEdge club, running competitions for 100+ schools.",3],
+  ["GSSOC 2025","open-source contributor.",0],["AASMAAN Foundation","volunteer, teaching underprivileged children.",1]]);
+ heading("07","Contact");
+ body+=`<text class="pb" x="64" y="${y+16}" font-size="16" fill="${t.mu}"><tspan fill="${p[0]}" font-weight="800">LinkedIn</tspan> jainmuditcse   <tspan fill="${p[1]}" font-weight="800">Email</tspan> jain.mudit100@gmail.com   <tspan fill="${p[2]}" font-weight="800">LeetCode</tspan> Jain_1706   <tspan fill="${p[3]}" font-weight="800">GitHub</tspan> Muditjain13</text>`;y+=44;
+ add(divider(t),16);
+ return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${y}" viewBox="0 0 ${W} ${y}" role="img" aria-label="Mudit Jain · GitHub profile">
+<style>${ff()}.pt{${cond}}.pb{font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;font-weight:600}</style>
+<rect width="${W}" height="${y}" fill="${t.bg}"/>
+${body}</svg>`;}
+
+const GEN={profile,header,terminal,roadrunner,projects,experience,research,"now-playing":nowPlaying,divider};
 const api={
  names:Object.keys(GEN),
  svg:(name,mode)=>GEN[name](THEMES[mode]),
